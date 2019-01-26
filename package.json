@@ -1,0 +1,15 @@
+{
+  "name": "test-tescafe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/veljacic/test-testcafe.git",
+  "author": "Edis Veljacic <Veljacic@fidor.com>",
+  "license": "MIT",
+  "dependencies": {
+    "testcafe": "^0.23.3",
+    "testcafe-browser-provider-nightmare": "^0.0.5"
+  },
+  "scripts": {
+    "test:e2e:all": "testcafe chrome:headless tests/"
+  }
+}

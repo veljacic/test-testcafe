@@ -1,38 +1,24 @@
 pipeline {
-  agent none
+
+  agent {
+    docker {
+      image 'node:11-alpine' 
+    }
+  } 
 
   stages {
 
-    stage("Checkout") {
-      agent any
+    stage("Prepare") {
       steps {
-        checkout scm
+        sh 'yarn install --non-interactive'
       }
     }
 
-    stage("Show paths") {
-      agent any
-
-    steps {
-      sh'printenv'
-      echo "pwd ++++++++++++"
-      sh "pwd;"
-
-    }
-
-    }
-
-    stage('Testcafe') {
-      agent { dockerfile {
-        filename 'Dockerfile'
-        args "--volumes-from 5d10875f8f5d"
-        } 
-      }
+    stage("TestCafe") {
       steps {
-        echo 'Successfull'
+         sh 'yarn test:e2e:all'
       }
     }
-
   }
 
    post {
